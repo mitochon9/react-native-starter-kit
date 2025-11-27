@@ -1,50 +1,148 @@
-# Welcome to your Expo app 👋
+# React Native Starter Kit 🚀
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+モダンな React Native スターターテンプレートです。
 
-## Get started
+## 主な機能
 
-1. Install dependencies
+- ⚡ **Expo SDK 54** - New Architecture 対応
+- 🧭 **Expo Router** - ファイルベースのナビゲーション
+- ⚛️ **React Compiler** - 自動最適化
+- 🎨 **ダーク/ライトテーマ** - システム設定に連動
+- 📱 **開発ビルド** - expo-dev-client による高速開発
+- 🔧 **TypeScript** - 厳格な型チェック
+- 📦 **EAS Build** - クラウドビルド対応
 
-   ```bash
-   npm install
-   ```
+## クイックスタート
 
-2. Start the app
+### 1. テンプレートからリポジトリを作成
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+GitHub の「Use this template」ボタンをクリック、または：
 
 ```bash
-npm run reset-project
+git clone https://github.com/your-username/react-native-starter-kit.git my-app
+cd my-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. プロジェクトをセットアップ
 
-## Learn more
+セットアップスクリプトを実行して、アプリ名とバンドルIDを設定：
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+npm run setup
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+以下の設定が対話形式で行えます：
+- アプリ名
+- 組織名
+- バンドルID（自動生成）
 
-## Join the community
+### 3. 依存関係をインストール
 
-Join our community of developers creating universal apps.
+```bash
+npm install
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 4. ネイティブプロジェクトを生成
+
+```bash
+npx expo prebuild
+```
+
+### 5. アプリを起動
+
+```bash
+# iOS
+npm run ios
+
+# Android
+npm run android
+
+# Web
+npm run web
+```
+
+## プロジェクト構成
+
+```
+├── app/                    # アプリ画面（ファイルベースルーティング）
+│   ├── (tabs)/            # タブナビゲーション
+│   │   ├── index.tsx      # ホームタブ
+│   │   └── explore.tsx    # 探索タブ
+│   ├── _layout.tsx        # ルートレイアウト
+│   └── modal.tsx          # モーダル画面
+├── components/            # 再利用可能なコンポーネント
+├── constants/             # テーマと定数
+├── hooks/                 # カスタムフック
+├── assets/               # 画像とフォント
+└── scripts/              # ユーティリティスクリプト
+```
+
+## 利用可能なスクリプト
+
+| スクリプト | 説明 |
+|-----------|------|
+| `npm run setup` | アプリ名でプロジェクトを初期化 |
+| `npm run start` | Metro バンドラーを起動 |
+| `npm run ios` | iOS でビルド・実行 |
+| `npm run android` | Android でビルド・実行 |
+| `npm run web` | Web 開発サーバーを起動 |
+| `npm run lint` | ESLint を実行 |
+
+## EAS Build のセットアップ
+
+クラウドビルドを使用する場合：
+
+```bash
+# EAS CLI をインストール
+npm install -g eas-cli
+
+# Expo にログイン
+eas login
+
+# プロジェクトを EAS に登録
+eas init
+
+# 開発用ビルド
+eas build --profile development --platform ios
+
+# 本番用ビルド
+eas build --profile production --platform all
+```
+
+## カスタマイズ
+
+### テーマ
+
+`constants/theme.ts` を編集してカラーをカスタマイズ：
+
+```typescript
+export const Colors = {
+  light: {
+    text: '#11181C',
+    background: '#fff',
+    // ...
+  },
+  dark: {
+    text: '#ECEDEE',
+    background: '#151718',
+    // ...
+  },
+};
+```
+
+### アプリアイコン
+
+`assets/images/` 内の画像を差し替え：
+- `icon.png` - アプリアイコン（1024x1024）
+- `splash-icon.png` - スプラッシュ画面アイコン
+- `favicon.png` - Web ファビコン
+
+## 参考リンク
+
+- [Expo ドキュメント](https://docs.expo.dev/)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
+- [EAS Build](https://docs.expo.dev/build/introduction/)
+
+## ライセンス
+
+MIT
