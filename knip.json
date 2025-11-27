@@ -1,0 +1,52 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "app/**/*.{ts,tsx}",
+    "app/_layout.tsx",
+    "app/**/_layout.tsx",
+    "app/**/index.tsx",
+    "scripts/**/*.js"
+  ],
+  "project": [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "constants/**/*.{ts,tsx}",
+    "hooks/**/*.{ts,tsx}",
+    "scripts/**/*.js"
+  ],
+  "ignore": [
+    "**/*.test.{ts,tsx}",
+    "**/*.spec.{ts,tsx}",
+    "**/__tests__/**",
+    "**/__mocks__/**",
+    "**/*.ios.{ts,tsx}",
+    "**/*.web.{ts,tsx}",
+    "**/*.android.{ts,tsx}",
+    "android/**",
+    "ios/**",
+    ".expo/**",
+    "node_modules/**",
+    "dist/**",
+    "build/**"
+  ],
+  "ignoreDependencies": ["expo-updates"],
+  "ignoreExportsUsedInFile": true,
+  "workspaces": {
+    ".": {
+      "entry": [
+        "app/**/*.{ts,tsx}",
+        "app/_layout.tsx",
+        "app/**/_layout.tsx",
+        "app/**/index.tsx",
+        "scripts/**/*.js"
+      ],
+      "project": [
+        "app/**/*.{ts,tsx}",
+        "components/**/*.{ts,tsx}",
+        "constants/**/*.{ts,tsx}",
+        "hooks/**/*.{ts,tsx}",
+        "scripts/**/*.js"
+      ]
+    }
+  }
+}
