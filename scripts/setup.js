@@ -5,9 +5,9 @@
  * 使用方法: node scripts/setup.js
  */
 
-const fs = require("fs");
-const path = require("path");
-const readline = require("readline");
+const fs = require("node:fs");
+const path = require("node:path");
+const readline = require("node:readline");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -82,7 +82,7 @@ async function main() {
   appJson.expo.ios.bundleIdentifier = bundleId;
   appJson.expo.android.package = bundleId;
 
-  fs.writeFileSync(appJsonPath, JSON.stringify(appJson, null, 2) + "\n");
+  fs.writeFileSync(appJsonPath, `${JSON.stringify(appJson, null, 2)}\n`);
   console.log("✅ app.json を更新しました");
 
   // package.json を更新
@@ -91,10 +91,7 @@ async function main() {
 
   packageJson.name = slug;
 
-  fs.writeFileSync(
-    packageJsonPath,
-    JSON.stringify(packageJson, null, 2) + "\n"
-  );
+  fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
   console.log("✅ package.json を更新しました");
 
   // 生成されたフォルダを削除
