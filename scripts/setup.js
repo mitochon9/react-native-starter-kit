@@ -106,12 +106,23 @@ async function main() {
 
   console.log("\n🎉 セットアップ完了！\n");
   console.log("次のステップ:");
-  console.log("  1. npm install");
-  console.log("  2. npx expo prebuild  （ios/ と android/ を生成）");
-  console.log("  3. npm run ios  または  npm run android");
+  console.log("  1. bun install");
+  console.log("  2. bunx expo prebuild  （ios/ と android/ を生成）");
+  console.log("  3. bun run ios  または  bun run android");
   console.log("");
-  console.log("EAS Build を使用する場合:");
-  console.log("  eas init");
+  console.log("📱 開発フローのおすすめ:");
+  console.log("");
+  console.log("  【日常の開発】");
+  console.log("    シミュレーター/エミュレーターでローカルビルド");
+  console.log("    → bun run ios / bun run android");
+  console.log("");
+  console.log("  【実機で確認したい時】");
+  console.log("    Android: USB接続して bun run android（簡単）");
+  console.log("    iOS: Xcode経由でローカルビルド、またはEAS Build");
+  console.log("");
+  console.log("  【チームで共有・配布したい時】");
+  console.log("    → EAS Build を使用（QRコードでインストール可能）");
+  console.log("    → eas init で初期設定");
   console.log("");
 
   rl.close();

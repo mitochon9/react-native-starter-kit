@@ -20,11 +20,12 @@
 
 1. [開発環境のセットアップ](#開発環境のセットアップ)
 2. [クイックスタート](#クイックスタート)
-3. [実機での開発](#実機での開発)
-4. [EAS Build のセットアップ](#eas-build-のセットアップ)
-5. [プロジェクト構成](#プロジェクト構成)
-6. [カスタマイズ](#カスタマイズ)
-7. [トラブルシューティング](#トラブルシューティング)
+3. [開発フローのおすすめ](#開発フローのおすすめ)
+4. [実機での開発](#実機での開発)
+5. [EAS Build のセットアップ](#eas-build-のセットアップ)
+6. [プロジェクト構成](#プロジェクト構成)
+7. [カスタマイズ](#カスタマイズ)
+8. [トラブルシューティング](#トラブルシューティング)
 
 ---
 
@@ -150,6 +151,54 @@ bun run web
 
 ---
 
+## 開発フローのおすすめ
+
+React Native 開発を始める方向けの、おすすめの開発フローです。
+
+### 🎯 日常の開発：ローカルビルド（推奨）
+
+```bash
+bun run ios      # iOSシミュレーター
+bun run android  # Androidエミュレーター
+```
+
+**メリット：**
+
+- 最速のイテレーション（ホットリロードが効く）
+- デバッグしやすい
+- 無料
+
+普段の開発はこれで十分です。コードを変更すると自動的に反映されます。
+
+### 📱 実機で確認したくなったら
+
+| プラットフォーム | 方法                             | 難易度      |
+| ---------------- | -------------------------------- | ----------- |
+| **Android**      | USB 接続して `bun run android`   | 簡単 🟢     |
+| **iOS**          | Xcode 経由でローカルビルド       | 少し手間 🟡 |
+| **iOS**          | EAS Build（要 $99/年）           | 簡単 🟢     |
+
+最初はシミュレーター/エミュレーターで十分です。実機が必要になるのは：
+
+- カメラ、GPS、プッシュ通知などのネイティブ機能を使う時
+- 実際の操作感（パフォーマンス、ジェスチャー）を確認したい時
+
+### 👥 チームで共有・配布したい時
+
+**→ EAS Build を使用**
+
+- QR コードでインストール可能
+- CI/CD との連携が簡単
+- `eas init` で初期設定
+
+### おすすめの進め方
+
+1. **今すぐ**: シミュレーター/エミュレーターで `bun run ios` または `bun run android`
+2. **実機テストが必要になったら**: Android は USB 接続で簡単、iOS はローカルビルドで試す
+3. **チーム共有や頻繁な実機テスト**: EAS Build を検討
+
+---
+
 ## 実機での開発
 
 ### iOS 実機
@@ -234,7 +283,7 @@ eas build --profile development --platform ios
 
 ```bash
 # EAS CLI をインストール
-bun install -g eas-cli
+bun add -g eas-cli
 
 # Expo アカウントにログイン
 eas login
@@ -365,6 +414,23 @@ bun install
 ```bash
 rm -rf ios android
 bunx expo prebuild
+```
+
+#### prebuild が失敗する（files.map is not a function）
+
+`bunx expo prebuild` で以下のエラーが出る場合：
+
+```
+files.map is not a function
+✖ Failed to create the native directories
+```
+
+キャッシュが壊れている可能性があります。以下を実行：
+
+```bash
+rm -rf node_modules bun.lock ios android .expo
+bun install
+bunx expo prebuild --clean
 ```
 
 ### iOS の問題
