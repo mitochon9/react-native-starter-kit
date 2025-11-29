@@ -7,13 +7,7 @@
     "app/**/index.tsx",
     "scripts/**/*.js"
   ],
-  "project": [
-    "app/**/*.{ts,tsx}",
-    "components/**/*.{ts,tsx}",
-    "constants/**/*.{ts,tsx}",
-    "hooks/**/*.{ts,tsx}",
-    "scripts/**/*.js"
-  ],
+  "project": ["app/**/*.{ts,tsx}", "src/**/*.{ts,tsx}", "scripts/**/*.js"],
   "ignore": [
     "**/*.test.{ts,tsx}",
     "**/*.spec.{ts,tsx}",
@@ -40,13 +34,7 @@
         "app/**/index.tsx",
         "scripts/**/*.js"
       ],
-      "project": [
-        "app/**/*.{ts,tsx}",
-        "components/**/*.{ts,tsx}",
-        "constants/**/*.{ts,tsx}",
-        "hooks/**/*.{ts,tsx}",
-        "scripts/**/*.js"
-      ]
+      "project": ["app/**/*.{ts,tsx}", "src/**/*.{ts,tsx}", "scripts/**/*.js"]
     }
   }
 }
