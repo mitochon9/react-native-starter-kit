@@ -25,7 +25,7 @@ export default defineConfig([
   },
   {
     // app層のprovidersスライスのuiセグメントは許可
-    files: ["./src/app/providers/ui/**"],
+    files: ["./src/app/**/ui/**"],
     rules: {
       "fsd/no-reserved-folder-names": "off",
     },

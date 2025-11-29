@@ -23,7 +23,7 @@
     "dist/**",
     "build/**"
   ],
-  "ignoreDependencies": ["expo-updates"],
+  "ignoreDependencies": ["expo-updates", "@feature-sliced/steiger-plugin"],
   "ignoreExportsUsedInFile": true,
   "workspaces": {
     ".": {
