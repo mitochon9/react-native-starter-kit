@@ -15,7 +15,17 @@
     "check": "biome check .",
     "check:fix": "biome check --write .",
     "knip": "knip",
-    "knip:production": "knip --production"
+    "knip:production": "knip --production",
+    "fsd:check": "steiger ./src",
+    "fsd:watch": "steiger ./src --watch",
+    "typecheck": "tsc --noEmit",
+    "ci": "bun run check && bun run typecheck && bun run fsd:check && bun run knip",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -47,8 +57,12 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.8",
+    "@feature-sliced/steiger-plugin": "^0.5.7",
     "@types/react": "~19.1.0",
+    "husky": "^9.1.7",
     "knip": "^5.70.2",
+    "lint-staged": "^16.2.7",
+    "steiger": "^0.5.11",
     "typescript": "~5.9.2"
   },
   "private": true
