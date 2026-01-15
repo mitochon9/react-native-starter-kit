@@ -1,0 +1,58 @@
+{
+  "common": {
+    "appName": "スターターキット",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "delete": "削除",
+    "edit": "編集",
+    "loading": "読み込み中..."
+  },
+  "settings": {
+    "title": "設定",
+    "theme": "テーマ",
+    "themeSystem": "システム",
+    "themeLight": "ライト",
+    "themeDark": "ダーク",
+    "language": "言語",
+    "notifications": "通知"
+  },
+  "language": {
+    "label": "言語",
+    "ja": "日本語",
+    "en": "English"
+  },
+  "notifications": {
+    "permissionDenied": "通知の権限が許可されていません"
+  },
+  "demo": {
+    "title": "コンポーネントショーケース",
+    "subtitle": "スターターキットの機能をご紹介",
+    "section": {
+      "theme": "テーマ切替",
+      "language": "言語切替",
+      "buttons": "ボタン",
+      "slider": "スライダー",
+      "heatmap": "カレンダーヒートマップ",
+      "chart": "折れ線グラフ"
+    },
+    "button": {
+      "primary": "プライマリ",
+      "secondary": "セカンダリ",
+      "outline": "アウトライン",
+      "loading": "ローディング"
+    },
+    "slider": {
+      "value": "値: {{value}}"
+    },
+    "chart": {
+      "series1": "データA",
+      "series2": "データB",
+      "empty": "データがありません"
+    },
+    "heatmap": {
+      "low": "低",
+      "high": "高"
+    }
+  }
+}

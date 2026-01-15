@@ -2,6 +2,8 @@
 
 モダンな React Native スターターテンプレートです。
 
+> **注意**: このプロジェクトは [Bun](https://bun.sh/) を使用して開発します。npm の代わりに bun コマンドを使用してください。
+
 ## 主な機能
 
 - ⚡ **Expo SDK 54** - New Architecture 対応
@@ -11,6 +13,91 @@
 - 📱 **開発ビルド** - expo-dev-client による高速開発
 - 🔧 **TypeScript** - 厳格な型チェック
 - 📦 **EAS Build** - クラウドビルド対応
+
+---
+
+## 目次
+
+1. [開発環境のセットアップ](#開発環境のセットアップ)
+2. [クイックスタート](#クイックスタート)
+3. [開発フローのおすすめ](#開発フローのおすすめ)
+4. [実機での開発](#実機での開発)
+5. [EAS Build のセットアップ](#eas-build-のセットアップ)
+6. [プロジェクト構成](#プロジェクト構成)
+7. [カスタマイズ](#カスタマイズ)
+8. [トラブルシューティング](#トラブルシューティング)
+
+---
+
+## 開発環境のセットアップ
+
+### 前提条件
+
+以下のツールをインストールしてください：
+
+| ツール                            | 必須           | インストール方法                                   |
+| --------------------------------- | -------------- | -------------------------------------------------- |
+| **Bun**                           | ✅             | `curl -fsSL https://bun.sh/install \| bash`        |
+| **Watchman** (macOS)              | 推奨           | `brew install watchman`                            |
+| **Xcode** (iOS 開発)              | iOS 開発時     | App Store からインストール                         |
+| **Android Studio** (Android 開発) | Android 開発時 | [公式サイト](https://developer.android.com/studio) |
+
+### Expo Go vs Development Build
+
+このテンプレートは **Development Build（開発ビルド）** を使用します。
+
+|                              | Expo Go                | Development Build |
+| ---------------------------- | ---------------------- | ----------------- |
+| セットアップ                 | 簡単（アプリ DL のみ） | ビルドが必要      |
+| カスタムネイティブモジュール | ❌ 不可                | ✅ 可能           |
+| 本番アプリとの互換性         | 低い                   | 高い              |
+| 推奨用途                     | 学習・プロトタイプ     | **本格開発**      |
+
+> 📖 詳細: [Expo - Set up your environment](https://docs.expo.dev/get-started/set-up-your-environment/)
+
+### iOS 開発環境（macOS のみ）
+
+1. **Xcode をインストール**
+
+   - App Store から Xcode をインストール
+   - 初回起動してライセンスに同意
+
+2. **Xcode Command Line Tools をインストール**
+
+   ```bash
+   xcode-select --install
+   ```
+
+3. **iOS シミュレーターを確認**
+   ```bash
+   xcrun simctl list devices
+   ```
+
+### Android 開発環境
+
+1. **Android Studio をインストール**
+
+   - [公式サイト](https://developer.android.com/studio) からダウンロード
+
+2. **SDK Manager で以下をインストール**
+
+   - Android SDK Platform（API 34 推奨）
+   - Android SDK Build-Tools
+   - Android Emulator
+   - Android SDK Platform-Tools
+
+3. **環境変数を設定**（`~/.zshrc` または `~/.bashrc` に追加）
+
+   ```bash
+   export ANDROID_HOME=$HOME/Library/Android/sdk
+   export PATH=$PATH:$ANDROID_HOME/emulator
+   export PATH=$PATH:$ANDROID_HOME/platform-tools
+   ```
+
+4. **エミュレーターを作成**
+   - Android Studio → Device Manager → Create Device
+
+---
 
 ## クイックスタート
 
@@ -25,41 +112,217 @@ cd my-app
 
 ### 2. プロジェクトをセットアップ
 
-セットアップスクリプトを実行して、アプリ名とバンドルIDを設定：
+セットアップスクリプトを実行して、アプリ名とバンドル ID を設定：
 
 ```bash
-npm run setup
+bun run setup
 ```
 
 以下の設定が対話形式で行えます：
+
 - アプリ名
 - 組織名
-- バンドルID（自動生成）
+- バンドル ID（自動生成）
 
 ### 3. 依存関係をインストール
 
 ```bash
-npm install
+bun install
 ```
 
 ### 4. ネイティブプロジェクトを生成
 
 ```bash
-npx expo prebuild
+bunx expo prebuild
 ```
 
-### 5. アプリを起動
+### 5. アプリを起動（シミュレーター/エミュレーター）
 
 ```bash
-# iOS
-npm run ios
+# iOS シミュレーター
+bun run ios
 
-# Android
-npm run android
+# Android エミュレーター
+bun run android
 
-# Web
-npm run web
+# Web ブラウザ
+bun run web
 ```
+
+---
+
+## 開発フローのおすすめ
+
+React Native 開発を始める方向けの、おすすめの開発フローです。
+
+### 🎯 日常の開発：ローカルビルド（推奨）
+
+```bash
+bun run ios      # iOSシミュレーター
+bun run android  # Androidエミュレーター
+```
+
+**メリット：**
+
+- 最速のイテレーション（ホットリロードが効く）
+- デバッグしやすい
+- 無料
+
+普段の開発はこれで十分です。コードを変更すると自動的に反映されます。
+
+### 📱 実機で確認したくなったら
+
+| プラットフォーム | 方法                             | 難易度      |
+| ---------------- | -------------------------------- | ----------- |
+| **Android**      | USB 接続して `bun run android`   | 簡単 🟢     |
+| **iOS**          | Xcode 経由でローカルビルド       | 少し手間 🟡 |
+| **iOS**          | EAS Build（要 $99/年）           | 簡単 🟢     |
+
+最初はシミュレーター/エミュレーターで十分です。実機が必要になるのは：
+
+- カメラ、GPS、プッシュ通知などのネイティブ機能を使う時
+- 実際の操作感（パフォーマンス、ジェスチャー）を確認したい時
+
+### 👥 チームで共有・配布したい時
+
+**→ EAS Build を使用**
+
+- QR コードでインストール可能
+- CI/CD との連携が簡単
+- `eas init` で初期設定
+
+### おすすめの進め方
+
+1. **今すぐ**: シミュレーター/エミュレーターで `bun run ios` または `bun run android`
+2. **実機テストが必要になったら**: Android は USB 接続で簡単、iOS はローカルビルドで試す
+3. **チーム共有や頻繁な実機テスト**: EAS Build を検討
+
+---
+
+## 実機での開発
+
+### iOS 実機
+
+#### 方法 1: ローカルビルド（推奨：Apple Developer 無料アカウントで可能）
+
+1. **Apple ID を Xcode に追加**
+
+   - Xcode → Settings → Accounts → 「+」で Apple ID を追加
+
+2. **iPhone を Mac に接続**
+
+   - USB ケーブルで接続
+   - iPhone で「このコンピュータを信頼」をタップ
+
+3. **デバイスを開発者モードに設定**（iOS 16 以降）
+
+   - iPhone → 設定 → プライバシーとセキュリティ → デベロッパモード → ON
+   - 再起動が必要
+
+4. **ビルド＆実行**
+
+   ```bash
+   bun run ios --device
+   ```
+
+   または特定のデバイスを指定：
+
+   ```bash
+   bunx expo run:ios --device "iPhone名"
+   ```
+
+5. **署名エラーが出た場合**
+   - Xcode で `ios/myapp.xcworkspace` を開く
+   - Signing & Capabilities で Team を選択
+   - iPhone で「設定 → 一般 → VPN とデバイス管理」から開発者を信頼
+
+#### 方法 2: EAS Build（Apple Developer Program 必要 - 年額 $99）
+
+```bash
+# 開発用ビルドを作成
+eas build --profile development --platform ios
+
+# ビルド完了後、QRコードまたはリンクからインストール
+```
+
+### Android 実機
+
+1. **開発者向けオプションを有効化**
+
+   - 設定 → デバイス情報 → ビルド番号を 7 回タップ
+
+2. **USB デバッグを有効化**
+
+   - 設定 → 開発者向けオプション → USB デバッグ → ON
+
+3. **USB ケーブルで接続**
+
+   - 「USB デバッグを許可」ダイアログで許可
+
+4. **接続確認**
+
+   ```bash
+   adb devices
+   ```
+
+5. **ビルド＆実行**
+
+   ```bash
+   bun run android
+   ```
+
+   > 実機が接続されていれば自動的に実機にインストールされます
+
+---
+
+## EAS Build のセットアップ
+
+クラウドビルドを使用する場合：
+
+### 初期設定
+
+```bash
+# EAS CLI をインストール
+bun add -g eas-cli
+
+# Expo アカウントにログイン
+eas login
+
+# プロジェクトを EAS に登録
+eas init
+```
+
+### ビルドプロファイル
+
+`eas.json` に定義済み：
+
+| プロファイル  | 用途                           | コマンド                                 |
+| ------------- | ------------------------------ | ---------------------------------------- |
+| `development` | 開発用（expo-dev-client 入り） | `eas build -p ios --profile development` |
+| `preview`     | 内部テスト用                   | `eas build -p ios --profile preview`     |
+| `production`  | ストア提出用                   | `eas build -p ios --profile production`  |
+
+### よく使うコマンド
+
+```bash
+# iOS 開発ビルド
+eas build --profile development --platform ios
+
+# Android 開発ビルド
+eas build --profile development --platform android
+
+# 両プラットフォーム同時ビルド
+eas build --profile development --platform all
+
+# 本番ビルド
+eas build --profile production --platform all
+
+# ストアに提出
+eas submit --platform ios
+eas submit --platform android
+```
+
+---
 
 ## プロジェクト構成
 
@@ -77,37 +340,20 @@ npm run web
 └── scripts/              # ユーティリティスクリプト
 ```
 
+---
+
 ## 利用可能なスクリプト
 
-| スクリプト | 説明 |
-|-----------|------|
-| `npm run setup` | アプリ名でプロジェクトを初期化 |
-| `npm run start` | Metro バンドラーを起動 |
-| `npm run ios` | iOS でビルド・実行 |
-| `npm run android` | Android でビルド・実行 |
-| `npm run web` | Web 開発サーバーを起動 |
-| `npm run lint` | ESLint を実行 |
+| スクリプト        | 説明                           |
+| ----------------- | ------------------------------ |
+| `bun run setup`   | アプリ名でプロジェクトを初期化 |
+| `bun run start`   | Metro バンドラーを起動         |
+| `bun run ios`     | iOS でビルド・実行             |
+| `bun run android` | Android でビルド・実行         |
+| `bun run web`     | Web 開発サーバーを起動         |
+| `bun run lint`    | ESLint を実行                  |
 
-## EAS Build のセットアップ
-
-クラウドビルドを使用する場合：
-
-```bash
-# EAS CLI をインストール
-npm install -g eas-cli
-
-# Expo にログイン
-eas login
-
-# プロジェクトを EAS に登録
-eas init
-
-# 開発用ビルド
-eas build --profile development --platform ios
-
-# 本番用ビルド
-eas build --profile production --platform all
-```
+---
 
 ## カスタマイズ
 
@@ -118,13 +364,13 @@ eas build --profile production --platform all
 ```typescript
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
+    text: "#11181C",
+    background: "#fff",
     // ...
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
+    text: "#ECEDEE",
+    background: "#151718",
     // ...
   },
 };
@@ -133,15 +379,129 @@ export const Colors = {
 ### アプリアイコン
 
 `assets/images/` 内の画像を差し替え：
+
 - `icon.png` - アプリアイコン（1024x1024）
 - `splash-icon.png` - スプラッシュ画面アイコン
 - `favicon.png` - Web ファビコン
 
+変更後に再生成：
+
+```bash
+bunx expo prebuild --clean
+```
+
+---
+
+## トラブルシューティング
+
+### 共通の問題
+
+#### Metro バンドラーがキャッシュの問題で動かない
+
+```bash
+bunx expo start --clear
+```
+
+#### node_modules を完全リセット
+
+```bash
+rm -rf node_modules
+bun install
+```
+
+#### ネイティブプロジェクトを再生成
+
+```bash
+rm -rf ios android
+bunx expo prebuild
+```
+
+#### prebuild が失敗する（files.map is not a function）
+
+`bunx expo prebuild` で以下のエラーが出る場合：
+
+```
+files.map is not a function
+✖ Failed to create the native directories
+```
+
+キャッシュが壊れている可能性があります。以下を実行：
+
+```bash
+rm -rf node_modules bun.lock ios android .expo
+bun install
+bunx expo prebuild --clean
+```
+
+### iOS の問題
+
+#### 「Unable to boot simulator」エラー
+
+```bash
+# シミュレーターをリセット
+xcrun simctl shutdown all
+xcrun simctl erase all
+```
+
+#### CocoaPods のエラー
+
+```bash
+cd ios
+bundle install  # Gemfile がある場合
+pod install --repo-update
+cd ..
+```
+
+#### 署名エラー（Signing Certificate / Provisioning Profile）
+
+1. Xcode で `ios/myapp.xcworkspace` を開く
+2. プロジェクト設定 → Signing & Capabilities
+3. 「Automatically manage signing」にチェック
+4. Team を選択
+
+### Android の問題
+
+#### 「SDK location not found」エラー
+
+`android/local.properties` を作成：
+
+```properties
+sdk.dir=/Users/YOUR_USERNAME/Library/Android/sdk
+```
+
+#### Gradle ビルドエラー
+
+```bash
+cd android
+./gradlew clean
+cd ..
+bun run android
+```
+
+#### エミュレーターが起動しない
+
+```bash
+# HAXM / KVM が有効か確認
+emulator -accel-check
+
+# 利用可能なエミュレーター一覧
+emulator -list-avds
+
+# 手動でエミュレーター起動
+emulator -avd <avd_name>
+```
+
+---
+
 ## 参考リンク
 
 - [Expo ドキュメント](https://docs.expo.dev/)
+- [Expo - 環境セットアップ](https://docs.expo.dev/get-started/set-up-your-environment/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
 - [EAS Build](https://docs.expo.dev/build/introduction/)
+- [React Native](https://reactnative.dev/)
+
+---
 
 ## ライセンス
 
