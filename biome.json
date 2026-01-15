@@ -16,7 +16,8 @@
       "!**/android",
       "!**/ios",
       "!**/*.lock",
-      "!**/.git"
+      "!**/.git",
+      "!global.css"
     ]
   },
   "formatter": {

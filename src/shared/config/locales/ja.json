@@ -1,0 +1,28 @@
+{
+  "common": {
+    "appName": "My App",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "delete": "削除",
+    "edit": "編集",
+    "loading": "読み込み中..."
+  },
+  "settings": {
+    "title": "設定",
+    "theme": "テーマ",
+    "themeSystem": "システム設定",
+    "themeLight": "ライト",
+    "themeDark": "ダーク",
+    "language": "言語",
+    "notifications": "通知"
+  },
+  "language": {
+    "label": "言語",
+    "ja": "日本語",
+    "en": "English"
+  },
+  "notifications": {
+    "permissionDenied": "通知の権限が許可されていません"
+  }
+}
