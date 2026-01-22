@@ -82,7 +82,9 @@ export const LineChart = ({
 
   const createPath = (key: string) => {
     const points = dailyData.filter((d) => d.values[key] !== undefined);
-    if (points.length < 2) return "";
+    if (points.length < 2) {
+      return "";
+    }
     return points
       .map((day, i) => `${i === 0 ? "M" : "L"} ${getX(day.dayIndex)} ${getY(day.values[key])}`)
       .join(" ");
