@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "main": "expo-router/entry",
+  "main": "./index.js",
   "version": "1.0.0",
   "scripts": {
     "setup": "node ./scripts/setup.js",
@@ -15,9 +15,9 @@
     "format:check": "biome format .",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "knip": "knip --no-config-hints",
-    "knip:fix": "knip --fix --allow-remove-files --no-config-hints",
-    "knip:production": "knip --production --no-config-hints",
+    "knip": "knip",
+    "knip:fix": "knip --fix --allow-remove-files",
+    "knip:production": "knip --production",
     "fsd:check": "steiger ./src",
     "fsd:watch": "steiger ./src --watch",
     "typecheck": "tsc --noEmit",
