@@ -103,7 +103,9 @@ export const CalendarHeatmap = ({
   };
 
   const filteredMonths = months.filter((m, i) => {
-    if (i === 0) return true;
+    if (i === 0) {
+      return true;
+    }
     const prev = months[i - 1];
     return m.weekIndex - prev.weekIndex >= 3;
   });

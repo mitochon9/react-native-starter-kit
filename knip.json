@@ -1,40 +1,23 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
   "entry": [
-    "app/**/*.{ts,tsx}",
-    "app/_layout.tsx",
-    "app/**/_layout.tsx",
-    "app/**/index.tsx",
-    "scripts/**/*.js"
+    "src/app/**/{page,layout,loading,error,not-found,_layout,index}.{ts,tsx}",
+    "src/app/**/*.tsx",
+    "scripts/**/*.js",
+    "steiger.config.ts"
   ],
-  "project": ["app/**/*.{ts,tsx}", "src/**/*.{ts,tsx}", "scripts/**/*.js"],
+  "project": ["src/**/*.{ts,tsx}", "scripts/**/*.js"],
   "ignore": [
-    "**/*.test.{ts,tsx}",
-    "**/*.spec.{ts,tsx}",
-    "**/__tests__/**",
-    "**/__mocks__/**",
-    "**/*.ios.{ts,tsx}",
-    "**/*.web.{ts,tsx}",
-    "**/*.android.{ts,tsx}",
+    "**/*.d.ts",
+    "**/node_modules/**",
+    "temp/**",
+    "docs/**",
+    "metro.config.js",
     "android/**",
     "ios/**",
-    ".expo/**",
-    "node_modules/**",
-    "dist/**",
-    "build/**"
+    ".expo/**"
   ],
-  "ignoreDependencies": ["expo-updates", "@feature-sliced/steiger-plugin"],
-  "ignoreExportsUsedInFile": true,
-  "workspaces": {
-    ".": {
-      "entry": [
-        "app/**/*.{ts,tsx}",
-        "app/_layout.tsx",
-        "app/**/_layout.tsx",
-        "app/**/index.tsx",
-        "scripts/**/*.js"
-      ],
-      "project": ["app/**/*.{ts,tsx}", "src/**/*.{ts,tsx}", "scripts/**/*.js"]
-    }
-  }
+  "ignoreDependencies": ["expo-updates"],
+  "ignoreBinaries": ["eas"],
+  "ignoreExportsUsedInFile": true
 }
