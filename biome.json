@@ -16,7 +16,8 @@
       "!**/android",
       "!**/ios",
       "!**/*.lock",
-      "!**/.git"
+      "!**/.git",
+      "!global.css"
     ]
   },
   "formatter": {
@@ -27,11 +28,47 @@
     "lineWidth": 100,
     "attributePosition": "auto"
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error",
+        "useHookAtTopLevel": "error",
+        "useExhaustiveDependencies": "warn"
+      },
+      "style": {
+        "noNamespace": "error",
+        "useBlockStatements": "warn",
+        "useImportType": "error",
+        "noNonNullAssertion": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn",
+        "noArrayIndexKey": "warn",
+        "noConsole": {
+          "level": "warn",
+          "options": {
+            "allow": ["warn", "error", "info"]
+          }
+        },
+        "noDebugger": "error"
+      },
+      "complexity": {
+        "noUselessFragments": "error",
+        "useOptionalChain": "warn"
+      },
+      "performance": {
+        "noAccumulatingSpread": "warn"
+      }
     }
   },
   "javascript": {
@@ -40,12 +77,40 @@
       "jsxQuoteStyle": "double",
       "trailingCommas": "es5",
       "semicolons": "always",
-      "arrowParentheses": "always"
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true
     }
   },
   "json": {
     "formatter": {
-      "enabled": true
+      "enabled": true,
+      "trailingCommas": "none"
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["**/scripts/**/*", "**/*.config.*"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          },
+          "style": {
+            "noNonNullAssertion": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["global.css", "**/*.css"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noUnknownAtRules": "off"
+          }
+        }
+      }
+    }
+  ]
 }

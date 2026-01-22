@@ -1,0 +1,58 @@
+{
+  "common": {
+    "appName": "Starter Kit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading..."
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "language": "Language",
+    "notifications": "Notifications"
+  },
+  "language": {
+    "label": "Language",
+    "ja": "日本語",
+    "en": "English"
+  },
+  "notifications": {
+    "permissionDenied": "Notification permission denied"
+  },
+  "demo": {
+    "title": "Component Showcase",
+    "subtitle": "Explore Starter Kit Features",
+    "section": {
+      "theme": "Theme Switching",
+      "language": "Language Switching",
+      "buttons": "Buttons",
+      "slider": "Slider",
+      "heatmap": "Calendar Heatmap",
+      "chart": "Line Chart"
+    },
+    "button": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "outline": "Outline",
+      "loading": "Loading"
+    },
+    "slider": {
+      "value": "Value: {{value}}"
+    },
+    "chart": {
+      "series1": "Series A",
+      "series2": "Series B",
+      "empty": "No data available"
+    },
+    "heatmap": {
+      "low": "Low",
+      "high": "High"
+    }
+  }
+}
